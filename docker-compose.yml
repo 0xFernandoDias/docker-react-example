@@ -1,0 +1,32 @@
+# It starts the container: docker run
+version: "3.9"
+
+services:
+
+  react-img:
+    container_name: react-container
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # -v $(pwd)/src:/app/src
+    volumes:
+      - ./src:/app/src
+
+    # -p 3000:3000
+    ports:
+      - "3000:3000"
+
+    # -e AN_EXAMPLE=Hello
+    environment:
+      - AN_EXAMPLE=Dev
+      - CHOKIDAR_USEPOLLING=true
+    
+    # --env-file ./env
+    #env_file:
+    #  - ./.env
+
+    # -it
+    #stdin_open: true
+    #tty: true
